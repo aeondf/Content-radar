@@ -5,8 +5,11 @@ description = "LLM-agent that aggregates and analyzes content from RSS, Reddit, 
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "asyncpg>=0.31.0",
     "fastapi>=0.136.1",
+    "greenlet>=3.5.0",
     "pydantic-settings>=2.14.0",
+    "sqlalchemy>=2.0.49",
     "uvicorn[standard]>=0.46.0",
 ]
 
@@ -27,6 +30,7 @@ target-version = "py313"
 [tool.mypy]
 python_version = "3.13"
 strict = true
+plugins = ["pydantic.mypy"]
 
 [tool.ruff.lint]
 select = [
