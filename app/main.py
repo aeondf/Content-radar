@@ -4,10 +4,14 @@ from fastapi import Depends, FastAPI
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api import posts, sources
 from app.core.config import settings
 from app.db.session import get_db
 
 app = FastAPI(title=settings.app_name)
+
+app.include_router(sources.router)
+app.include_router(posts.router)
 
 
 @app.get("/health")
