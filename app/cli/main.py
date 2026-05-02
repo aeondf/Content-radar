@@ -1,5 +1,6 @@
 import typer
 
+from app.cli.fetch import fetch_all
 from app.cli.seed import seed_sources
 
 app = typer.Typer(help="Content radar admin CLI", no_args_is_help=True)
@@ -11,6 +12,7 @@ def main() -> None:
 
 
 app.command(name="seed-sources")(seed_sources)
+app.command(name="fetch-all")(fetch_all)
 
 
 @app.command()
