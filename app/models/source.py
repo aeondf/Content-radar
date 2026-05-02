@@ -1,9 +1,13 @@
 from datetime import datetime
 from enum import StrEnum
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.post import Post
 
 from sqlalchemy import Boolean, DateTime, String, func
 from sqlalchemy import Enum as SQLEnum
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
 
@@ -35,6 +39,11 @@ class Source(Base):
         server_default=func.now(),
         onupdate=func.now(),
         nullable=False,
+    )
+
+    posts: Mapped[list["Post"]] = relationship(
+        back_populates="source",
+        cascade="all, delete-orphan",
     )
 
     def __repr__(self) -> str:
