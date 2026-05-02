@@ -5,6 +5,8 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
+# Importing app.models registers all models in Base.metadata for autogenerate.
+import app.models  # noqa: F401
 from alembic import context
 from app.core.config import settings
 from app.db.base import Base
